@@ -1,7 +1,8 @@
-const express = require('express');
-const router = express.Router();
+const { Router } = require('express');
+const jobRoutes = require('./modules/jobs/job.routes');
 
-// placeholder — feature routes will be mounted here
-// e.g. router.use('/jobs', jobRoutes);
+const router = Router();
+
+router.use('/jobs', jobRoutes);
 
 module.exports = router;

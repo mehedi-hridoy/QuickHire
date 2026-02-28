@@ -1,19 +1,22 @@
 const express = require('express');
 const cors = require('cors');
+const path = require('path');
 const routes = require('./routes');
 
 const app = express();
 
-// Middlewares
 app.use(cors());
 app.use(express.json());
+app.use('/uploads', express.static(path.join(__dirname, '../public/uploads')));
 
-// Routes
 app.use('/api', routes);
 
-// Health check
-app.get('/', (req, res) => {
-  res.send('QuickHire API is running...');
+app.get('/', (_, res) => res.send('QuickHire API is running...'));
+
+// Global error handler — catches anything thrown from asyncHandler
+app.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
+  console.error(err.stack);
+  res.status(err.status || 500).json({ success: false, message: err.message });
 });
 
 module.exports = app;

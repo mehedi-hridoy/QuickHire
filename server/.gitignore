@@ -1,3 +1,7 @@
 node_modules/
 .env
 *.log
+
+# Keep uploads dir tracked but ignore its contents
+public/uploads/*
+!public/uploads/.gitkeep
