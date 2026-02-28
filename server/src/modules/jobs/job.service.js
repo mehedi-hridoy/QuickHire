@@ -1,16 +1,41 @@
 const { getDB } = require('../../config/db');
 const { ObjectId } = require('mongodb');
+const { endOfDay } = require('../../utils/dateUtils');
 
 const col = () => getDB().collection('jobs');
 
 const safeParseTags = (tags) => {
   if (!tags) return [];
-  try { return JSON.parse(tags); } catch { return tags.split(',').map((t) => t.trim()); }
+  try {
+    return JSON.parse(tags);
+  } catch {
+    return tags.split(',').map((t) => t.trim()).filter(Boolean);
+  }
+};
+
+const buildQuery = ({ search, location, category, from, to }) => {
+  const query = {};
+  if (search)
+    query.$or = [
+      { title: { $regex: search, $options: 'i' } },
+      { company: { $regex: search, $options: 'i' } },
+    ];
+  if (location) query.location = location;
+  if (category) query.category = category;
+  if (from || to)
+    query.createdAt = {
+      ...(from && { $gte: new Date(from) }),
+      ...(to && { $lte: endOfDay(to) }),
+    };
+  return query;
 };
 
 module.exports = {
   create: (data) => col().insertOne({ ...data, tags: safeParseTags(data.tags), createdAt: new Date() }),
-  getAll: () => col().find().sort({ createdAt: -1 }).toArray(),
+  getAll: (filters) => {
+    const sort = filters?.sort === 'asc' ? 1 : -1;
+    return col().find(buildQuery(filters)).sort({ createdAt: sort }).toArray();
+  },
   getById: (id) => col().findOne({ _id: new ObjectId(id) }),
   update: (id, data) =>
     col().findOneAndUpdate(

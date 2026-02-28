@@ -10,7 +10,12 @@ const storage = multer.diskStorage({
   filename: (_, file, cb) => cb(null, `${Date.now()}-${file.originalname.replace(/\s+/g, '-')}`),
 });
 
-const fileFilter = (_, file, cb) =>
-  cb(null, /\.(jpe?g|png|webp|svg)$/i.test(path.extname(file.originalname)));
+const fileFilter = (_, file, cb) => {
+  if (/\.(jpe?g|png|webp|svg)$/i.test(path.extname(file.originalname))) {
+    cb(null, true);
+  } else {
+    cb(new Error('Only image files (jpg, png, webp, svg) are allowed'), false);
+  }
+};
 
 module.exports = multer({ storage, fileFilter, limits: { fileSize: 2 * 1024 * 1024 } });
