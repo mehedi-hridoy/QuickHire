@@ -12,6 +12,7 @@ import talkitImg from "@/assets/talkit.png";
 import dashboardImg from "@/assets/dashboard.png";
 import FeaturedJobs from "@/features/jobs/FeaturedJobs";
 import LatestJobs from "@/features/jobs/LatestJobs";
+import NewsletterForm from "@/components/ui/NewsletterForm";
 
 function DesignIcon() {
   return (
@@ -295,21 +296,109 @@ export default function HomePage() {
       <LatestJobs />
 
       {/* FOOTER */}
-      <footer className="border-t border-border bg-white">
-        <div className="max-w-[1440px] mx-auto px-6 lg:px-[124px] py-10 flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-2">
-            <svg width="28" height="28" viewBox="0 0 34 34" fill="none">
-              <circle cx="17" cy="17" r="17" fill="#4640DE"/>
-              <circle cx="15.5" cy="15.5" r="6" stroke="white" strokeWidth="2.4"/>
-              <path d="M20 20L24.5 24.5" stroke="white" strokeWidth="2.4" strokeLinecap="round"/>
-            </svg>
-            <span className="font-semibold text-dark" style={{ fontFamily: "var(--font-heading)" }}>QuickHire</span>
+      <footer className="bg-[#202430] text-white">
+        {/* Main footer content */}
+        <div className="max-w-[1440px] mx-auto px-6 lg:px-[124px] pt-16 pb-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[2fr_1fr_1fr_2fr] gap-12">
+
+          {/* Col 1 — Brand */}
+          <div className="flex flex-col gap-5">
+            <div className="flex items-center gap-2.5">
+              <div className="w-9 h-9 rounded-full bg-[#4640DE] flex items-center justify-center shrink-0">
+                <svg width="18" height="18" viewBox="0 0 34 34" fill="none">
+                  <circle cx="15.5" cy="15.5" r="6" stroke="white" strokeWidth="2.4"/>
+                  <path d="M20 20L24.5 24.5" stroke="white" strokeWidth="2.4" strokeLinecap="round"/>
+                </svg>
+              </div>
+              <span className="text-lg font-bold text-white" style={{ fontFamily: "var(--font-heading)" }}>QuickHire</span>
+            </div>
+            <p className="text-sm text-[#9199A3] leading-relaxed max-w-[260px]">
+              Great platform for the job seeker that passionate about startups. Find your dream job easier.
+            </p>
           </div>
-          <p className="text-sm text-subtle text-center">\u00a9 2026 QuickHire. All rights reserved.</p>
-          <div className="flex items-center gap-6">
-            <Link href="/privacy" className="text-sm text-subtle hover:text-dark transition-colors">Privacy</Link>
-            <Link href="/terms" className="text-sm text-subtle hover:text-dark transition-colors">Terms</Link>
-            <Link href="/contact" className="text-sm text-subtle hover:text-dark transition-colors">Contact</Link>
+
+          {/* Col 2 — About */}
+          <div className="flex flex-col gap-5">
+            <h4 className="text-base font-semibold text-white">About</h4>
+            <ul className="flex flex-col gap-4">
+              {["Companies", "Pricing", "Terms", "Advice", "Privacy Policy"].map((item) => (
+                <li key={item}>
+                  <Link href="#" className="text-sm text-[#9199A3] hover:text-white transition-colors">
+                    {item}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Col 3 — Resources */}
+          <div className="flex flex-col gap-5">
+            <h4 className="text-base font-semibold text-white">Resources</h4>
+            <ul className="flex flex-col gap-4">
+              {["Help Docs", "Guide", "Updates", "Contact Us"].map((item) => (
+                <li key={item}>
+                  <Link href="#" className="text-sm text-[#9199A3] hover:text-white transition-colors">
+                    {item}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Col 4 — Newsletter */}
+          <div className="flex flex-col gap-5">
+            <h4 className="text-base font-semibold text-white">Get job notifications</h4>
+            <p className="text-sm text-[#9199A3] leading-relaxed">
+              The latest job news, articles, sent to your inbox weekly.
+            </p>
+            <NewsletterForm />
+          </div>
+        </div>
+
+        {/* Divider */}
+        <div className="max-w-[1440px] mx-auto px-6 lg:px-[124px]">
+          <div className="h-px bg-[#2D3748]" />
+        </div>
+
+        {/* Bottom bar */}
+        <div className="max-w-[1440px] mx-auto px-6 lg:px-[124px] py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p className="text-sm text-[#9199A3]">2026 @ QuickHire. All rights reserved.</p>
+
+          {/* Social icons */}
+          <div className="flex items-center gap-3">
+            {/* Facebook */}
+            <a href="#" aria-label="Facebook" className="w-9 h-9 rounded-full bg-[#2D3748] hover:bg-[#4640DE] flex items-center justify-center transition-colors">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="white">
+                <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
+              </svg>
+            </a>
+            {/* Instagram */}
+            <a href="#" aria-label="Instagram" className="w-9 h-9 rounded-full bg-[#2D3748] hover:bg-[#4640DE] flex items-center justify-center transition-colors">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                <circle cx="12" cy="12" r="4"/>
+                <circle cx="17.5" cy="6.5" r="1" fill="white" stroke="none"/>
+              </svg>
+            </a>
+            {/* Dribbble */}
+            <a href="#" aria-label="Dribbble" className="w-9 h-9 rounded-full bg-[#2D3748] hover:bg-[#4640DE] flex items-center justify-center transition-colors">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 5.85m19.5 1.9c-3.5-.93-6.63-.82-8.94 0-2.58.92-5.01 2.86-7.44 6.32"/>
+              </svg>
+            </a>
+            {/* LinkedIn */}
+            <a href="#" aria-label="LinkedIn" className="w-9 h-9 rounded-full bg-[#2D3748] hover:bg-[#4640DE] flex items-center justify-center transition-colors">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="white">
+                <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/>
+                <circle cx="4" cy="4" r="2"/>
+              </svg>
+            </a>
+            {/* Twitter / X */}
+            <a href="#" aria-label="Twitter" className="w-9 h-9 rounded-full bg-[#2D3748] hover:bg-[#4640DE] flex items-center justify-center transition-colors">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="white">
+                <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/>
+              </svg>
+            </a>
           </div>
         </div>
       </footer>
