@@ -16,9 +16,10 @@ const TAG_COLORS: Record<string, string> = {
 interface Props {
   jobs: Job[];
   onDelete: (id: string) => void;
+  onEdit: (job: Job) => void;
 }
 
-export default function JobList({ jobs, onDelete }: Props) {
+export default function JobList({ jobs, onDelete, onEdit }: Props) {
   if (!jobs.length)
     return (
       <div className="text-center py-20 text-gray-400 text-sm">
@@ -68,12 +69,20 @@ export default function JobList({ jobs, onDelete }: Props) {
             ))}
           </div>
 
-          <button
-            onClick={() => onDelete(job._id)}
-            className="w-full text-xs text-red-400 hover:text-red-600 hover:bg-red-50 py-1.5 rounded-lg transition-colors border border-transparent hover:border-red-100"
-          >
-            Delete
-          </button>
+          <div className="flex gap-2">
+            <button
+              onClick={() => onEdit(job)}
+              className="flex-1 text-xs text-blue-500 hover:text-blue-700 hover:bg-blue-50 py-1.5 rounded-lg transition-colors border border-transparent hover:border-blue-100"
+            >
+              Edit
+            </button>
+            <button
+              onClick={() => onDelete(job._id)}
+              className="flex-1 text-xs text-red-400 hover:text-red-600 hover:bg-red-50 py-1.5 rounded-lg transition-colors border border-transparent hover:border-red-100"
+            >
+              Delete
+            </button>
+          </div>
         </div>
       ))}
     </div>

@@ -1,6 +1,6 @@
 export const SERVER_URL = process.env.NEXT_PUBLIC_SERVER_URL ?? 'http://localhost:5000';
 
-export const JOB_TYPES = ['Full Time', 'Part Time'] as const;
+export const JOB_TYPES = ['Full Time', 'Part Time', 'Remote', 'Internship', 'Contract'] as const;
 
 export const JOB_TAGS = [
   'Marketing',

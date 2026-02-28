@@ -34,4 +34,6 @@ const listWithJob = () =>
 module.exports = {
   create: (data) => col().insertOne({ ...data, createdAt: new Date() }),
   listWithJob,
+  getById: (id) => col().findOne({ _id: new ObjectId(id) }),
+  remove: (id) => col().deleteOne({ _id: new ObjectId(id) }),
 };

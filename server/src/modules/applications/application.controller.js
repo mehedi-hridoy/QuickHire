@@ -21,4 +21,16 @@ const listApplications = async (req, res) => {
   return ok(res, data);
 };
 
-module.exports = { createApplication, listApplications };
+const getApplication = async (req, res) => {
+  const data = await service.getById(req.params.id);
+  if (!data) return fail(res, 'Application not found', 404);
+  return ok(res, data);
+};
+
+const deleteApplication = async (req, res) => {
+  const result = await service.remove(req.params.id);
+  if (!result.deletedCount) return fail(res, 'Application not found', 404);
+  return ok(res, { message: 'Application deleted' });
+};
+
+module.exports = { createApplication, listApplications, getApplication, deleteApplication };

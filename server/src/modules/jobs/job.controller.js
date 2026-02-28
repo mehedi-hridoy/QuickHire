@@ -6,7 +6,7 @@ const createJob = async (req, res) => {
   const missing = requireFields(req.body, ['title', 'company', 'location', 'category', 'description', 'type']);
   if (missing.length) return fail(res, `Missing fields: ${missing.join(', ')}`);
 
-  if (!['Full Time', 'Part Time'].includes(req.body.type))
+  if (!['Full Time', 'Part Time', 'Remote', 'Internship', 'Contract'].includes(req.body.type))
     return fail(res, 'Invalid job type');
 
   const logo = req.file ? `/uploads/${req.file.filename}` : null;

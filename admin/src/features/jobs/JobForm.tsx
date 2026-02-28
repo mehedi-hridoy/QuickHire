@@ -3,10 +3,10 @@
 import { useState } from 'react';
 import LogoUploader from '@/components/ui/LogoUploader';
 import { jobService } from '@/services/jobService';
-import { JOB_TAGS, JOB_CATEGORIES, JOB_TYPES, INPUT_CLASS } from '@/lib/constants';
+import { JOB_TAGS, JOB_CATEGORIES, JOB_TYPES, INPUT_CLASS, SERVER_URL } from '@/lib/constants';
 import type { Job, JobType } from '@/types/job';
 
-const initialForm = {
+const blankForm = {
   title: '',
   company: '',
   location: '',
@@ -17,6 +17,7 @@ const initialForm = {
 };
 
 interface Props {
+  initialData?: Job;          // present → edit mode
   onSuccess: (job: Job) => void;
   onCancel: () => void;
 }
@@ -48,13 +49,27 @@ function TagSelector({ value, onChange }: { value: string[]; onChange: (next: st
   );
 }
 
-export default function JobForm({ onSuccess, onCancel }: Props) {
-  const [form, setForm] = useState(initialForm);
+export default function JobForm({ initialData, onSuccess, onCancel }: Props) {
+  const isEdit = !!initialData;
+
+  const [form, setForm] = useState(
+    initialData
+      ? {
+          title: initialData.title,
+          company: initialData.company,
+          location: initialData.location,
+          category: initialData.category,
+          description: initialData.description,
+          type: initialData.type,
+          tags: initialData.tags ?? [],
+        }
+      : blankForm,
+  );
   const [logo, setLogo] = useState<File | null>(null);
   const [loading, setLoading] = useState(false);
 
   const setField =
-    (field: keyof typeof initialForm) =>
+    (field: keyof typeof blankForm) =>
     (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) =>
       setForm((p) => ({ ...p, [field]: e.target.value }));
 
@@ -63,17 +78,26 @@ export default function JobForm({ onSuccess, onCancel }: Props) {
     setLoading(true);
     try {
       const fd = new FormData();
-      Object.entries(form).forEach(([k, v]) => fd.append(k, Array.isArray(v) ? JSON.stringify(v) : v));
+      Object.entries(form).forEach(([k, v]) =>
+        fd.append(k, Array.isArray(v) ? JSON.stringify(v) : v),
+      );
       if (logo) fd.append('logo', logo);
-      onSuccess(await jobService.create(fd));
+
+      const result = isEdit
+        ? await jobService.update(initialData!._id, fd)
+        : await jobService.create(fd);
+      onSuccess(result);
     } finally {
       setLoading(false);
     }
   };
 
+  const existingLogoUrl =
+    initialData?.logo ? `${SERVER_URL}${initialData.logo}` : null;
+
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
-      <LogoUploader label="Company Logo" onChange={setLogo} />
+      <LogoUploader label="Company Logo" initialUrl={existingLogoUrl} onChange={setLogo} />
 
       <div className="grid grid-cols-2 gap-3">
         <input required placeholder="Job Title" value={form.title} onChange={setField('title')} className={INPUT_CLASS} />
@@ -118,7 +142,7 @@ export default function JobForm({ onSuccess, onCancel }: Props) {
           disabled={loading}
           className="px-4 py-2 text-sm text-white bg-blue-600 rounded-lg hover:bg-blue-700 disabled:opacity-50 transition-colors"
         >
-          {loading ? 'Posting...' : 'Post Job'}
+          {loading ? (isEdit ? 'Saving...' : 'Posting...') : (isEdit ? 'Save Changes' : 'Post Job')}
         </button>
       </div>
     </form>
