@@ -130,8 +130,8 @@ export default function HomePage() {
               <br />
               <span className="relative inline-block text-accent">
                 5000+ Jobs
-                <svg className="absolute -bottom-2 left-0 w-full" height="6" viewBox="0 0 240 6" preserveAspectRatio="none" fill="none" aria-hidden="true">
-                  <path d="M0 4 Q30 0.5 60 4 Q90 7.5 120 4 Q150 0.5 180 4 Q210 7.5 240 4" stroke="#26A4FF" strokeWidth="2.5" strokeLinecap="round"/>
+                <svg className="absolute -bottom-3 left-0 w-full" height="10" viewBox="0 0 340 10" preserveAspectRatio="none" fill="none" aria-hidden="true">
+                  <path d="M2 7.5 C40 2, 80 9, 120 5.5 C160 2, 200 8.5, 240 5 C280 1.5, 310 7, 338 5" stroke="#26A4FF" strokeWidth="3" strokeLinecap="round" fill="none"/>
                 </svg>
               </span>
             </h1>
