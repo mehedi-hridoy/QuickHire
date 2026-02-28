@@ -119,9 +119,9 @@ export default function HomePage() {
 
       {/* HERO */}
       <section className="relative bg-surface overflow-hidden">
-        <div className="max-w-[1440px] mx-auto px-6 lg:px-[124px] pt-16 lg:pt-24 pb-0 flex flex-col-reverse lg:flex-row items-center gap-10 lg:gap-0">
-          <div className="flex-1 pb-20 lg:pb-28 max-w-[600px]">
-            <h1 className="text-[48px] sm:text-[60px] lg:text-[72px] font-[600] leading-[110%] text-dark" style={{ fontFamily: "var(--font-heading)" }}>
+        <div className="max-w-[1440px] mx-auto px-6 lg:px-[124px] pt-12 lg:pt-24 pb-0 flex flex-col lg:flex-row items-center gap-0 lg:gap-0">
+          <div className="flex-1 pb-10 lg:pb-28 max-w-[600px] w-full">
+            <h1 className="text-[40px] sm:text-[56px] lg:text-[72px] font-[700] leading-[110%] text-dark" style={{ fontFamily: "var(--font-heading)" }}>
               Discover more than
               <br />
               <span className="relative inline-block text-accent">
@@ -131,18 +131,19 @@ export default function HomePage() {
                 </svg>
               </span>
             </h1>
-            <p className="mt-8 text-lg text-muted leading-[160%] max-w-[521px]">
+            <p className="mt-6 text-base lg:text-lg text-muted leading-[160%] max-w-[521px]">
               Great platform for the job seeker that searching for new career heights and passionate about startups.
             </p>
             <HeroSearch />
           </div>
 
-          <div className="relative flex-shrink-0 flex justify-center lg:justify-end lg:ml-16 w-full lg:w-auto">
-            <div className="absolute bottom-0 right-0 w-[420px] lg:w-[480px] h-[520px] lg:h-[640px] bg-[#E9EBFD] rounded-t-[160px] rounded-b-none" />
+          {/* Hero image — hidden on mobile */}
+          <div className="hidden lg:flex relative flex-shrink-0 justify-end ml-16 w-auto">
+            <div className="absolute bottom-0 right-0 w-[480px] h-[640px] bg-[#E9EBFD] rounded-t-[160px] rounded-b-none" />
             <div className="relative z-10 mt-auto">
-              <Image src={heroImg} alt="Career professional" width={501} height={707} priority className="object-contain max-h-[580px] lg:max-h-none"/>
+              <Image src={heroImg} alt="Career professional" width={501} height={707} priority className="object-contain"/>
             </div>
-            <div className="absolute bottom-24 right-4 lg:-right-4 z-20 bg-white rounded-xl shadow-[0_8px_32px_rgba(0,0,0,0.10)] px-5 py-4 flex items-center gap-3">
+            <div className="absolute bottom-24 -right-4 z-20 bg-white rounded-xl shadow-[0_8px_32px_rgba(0,0,0,0.10)] px-5 py-4 flex items-center gap-3">
               <div className="w-10 h-10 rounded-full bg-[#ECFDF5] flex items-center justify-center">
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
                   <path d="M2 17V8l8-5 8 5v9" stroke="#34D399" strokeWidth="1.6" strokeLinejoin="round"/>
@@ -160,17 +161,17 @@ export default function HomePage() {
 
       {/* COMPANIES */}
       <section className="border-y border-border bg-white">
-        <div className="max-w-[1440px] mx-auto px-6 lg:px-[124px] py-10 flex flex-col gap-6">
+        <div className="max-w-[1440px] mx-auto px-6 lg:px-[124px] py-8 lg:py-10 flex flex-col gap-6">
           <p className="text-sm text-[#A8ADB7] font-normal">
             Companies we helped grow
           </p>
-          <div className="flex items-center justify-between gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:flex lg:items-center lg:justify-between gap-6">
             {companies.map((c) => (
               <div key={c.name} className="flex items-center gap-2" style={{ filter: "grayscale(1) brightness(0.72)" }}>
                 {"icon" in c && c.icon && (
-                  <Image src={c.icon} alt="" height={28} width={28} className="h-7 w-auto object-contain" />
+                  <Image src={c.icon} alt="" height={28} width={28} className="h-6 lg:h-7 w-auto object-contain" />
                 )}
-                <Image src={c.src} alt={c.name} height={28} width={120} className="h-7 w-auto object-contain" />
+                <Image src={c.src} alt={c.name} height={28} width={120} className="h-6 lg:h-7 w-auto object-contain" />
               </div>
             ))}
           </div>
@@ -178,26 +179,40 @@ export default function HomePage() {
       </section>
 
       {/* CATEGORIES */}
-      <section className="py-20 lg:py-28">
+      <section className="py-12 lg:py-28">
         <div className="max-w-[1440px] mx-auto px-6 lg:px-[124px]">
-          <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4 mb-12">
+          <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4 mb-8 lg:mb-12">
             <div>
-              <h2 className="text-[36px] lg:text-[40px] font-[600] text-dark leading-tight" style={{ fontFamily: "var(--font-heading)" }}>
+              <h2 className="text-[28px] lg:text-[40px] font-[700] text-dark leading-tight" style={{ fontFamily: "var(--font-heading)" }}>
                 Explore by <span className="text-brand">category</span>
               </h2>
-              <p className="mt-3 text-base text-muted max-w-[480px]">
-                Find the job that perfectly matches your passion and skill set.
-              </p>
             </div>
-            <Link href="/jobs" className="shrink-0 flex items-center gap-1.5 text-sm font-semibold text-brand hover:underline underline-offset-4">
-              Show all jobs
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </Link>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-6">
+          {/* Mobile: single-col list cards */}
+          <div className="flex flex-col gap-3 lg:hidden">
+            {categories.map((cat) => (
+              <Link
+                key={cat.id}
+                href={`/jobs?category=${encodeURIComponent(cat.name)}`}
+                className="flex items-center gap-4 bg-white border border-border rounded-lg px-5 py-4 hover:border-brand transition-colors"
+              >
+                <div className={`w-10 h-10 rounded-lg flex items-center justify-center shrink-0 ${cat.iconBg} ${cat.iconColor}`}>
+                  <cat.Icon />
+                </div>
+                <div className="flex-1">
+                  <p className="text-sm font-semibold text-dark">{cat.name}</p>
+                  <p className="text-xs text-muted">{cat.jobCount} jobs available</p>
+                </div>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" className="shrink-0 text-muted">
+                  <path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </Link>
+            ))}
+          </div>
+
+          {/* Desktop: 4-col grid */}
+          <div className="hidden lg:grid grid-cols-4 gap-6">
             {categories.map((cat) => (
               <Link
                 key={cat.id}
@@ -208,12 +223,8 @@ export default function HomePage() {
                   <cat.Icon />
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-base font-semibold text-dark group-hover:text-white transition-colors">
-                    {cat.name}
-                  </h3>
-                  <p className="text-sm text-muted group-hover:text-white/70 transition-colors mt-0.5">
-                    {cat.jobCount} jobs available
-                  </p>
+                  <h3 className="text-base font-semibold text-dark group-hover:text-white transition-colors">{cat.name}</h3>
+                  <p className="text-sm text-muted group-hover:text-white/70 transition-colors mt-0.5">{cat.jobCount} jobs available</p>
                 </div>
                 <div className="flex items-center text-muted group-hover:text-white transition-colors">
                   <svg width="20" height="20" viewBox="0 0 20 20" fill="none" className="transition-transform group-hover:translate-x-1">
@@ -227,44 +238,38 @@ export default function HomePage() {
       </section>
 
       {/* CTA — START POSTING */}
-      <section className="py-20 lg:pt-28 lg:pb-28">
-        <div className="max-w-[1440px] mx-auto px-6 lg:px-[124px]">
-          {/* clip-path creates the diagonal top-left & bottom-left corner cuts */}
+      <section className="px-4 py-10 lg:py-20 lg:px-[124px]">
+        <div className="max-w-[1440px] mx-auto">
           <div
-            className="relative bg-[#4640DE] h-[380px] lg:h-[420px]"
-            style={{
-              clipPath:
-                "polygon(4% 0%, 100% 0%, 100% 82%, 96% 100%, 0% 100%, 0% 0%)",
-            }}
+            className="relative bg-[#4640DE] overflow-hidden"
+            style={{ clipPath: "polygon(4% 0%, 100% 0%, 100% 82%, 96% 100%, 0% 100%, 0% 0%)" }}
           >
-            {/* Left copy — vertically centered */}
-            <div className="absolute left-0 top-0 bottom-0 z-10 flex flex-col justify-center pl-[9%] pr-6 w-[46%]">
-              <h2
-                className="text-[38px] lg:text-[52px] font-[600] leading-[110%] text-white"
-                style={{ fontFamily: "var(--font-heading)" }}
-              >
-                Start posting<br />jobs today
+            {/* Mobile layout — centered text */}
+            <div className="lg:hidden flex flex-col items-center text-center px-6 py-14 gap-4">
+              <h2 className="text-[32px] font-[700] leading-[110%] text-white" style={{ fontFamily: "var(--font-heading)" }}>
+                Start posting jobs today
               </h2>
-              <p className="mt-4 text-base text-white/70">
-                Start posting jobs for only $10.
-              </p>
-              <Link
-                href="/signup"
-                className="mt-8 inline-block w-fit px-8 py-4 bg-white text-[#4640DE] text-base font-semibold rounded hover:bg-[#f0f0ff] transition-colors"
-              >
+              <p className="text-sm text-white/70">Start posting jobs for only $10.</p>
+              <Link href="/signup" className="mt-2 w-full max-w-[280px] block text-center px-8 py-4 bg-white text-[#4640DE] text-base font-semibold rounded hover:bg-[#f0f0ff] transition-colors">
                 Sign Up For Free
               </Link>
+              <Image src={dashboardImg} alt="QuickHire admin dashboard preview" width={480} height={320} className="w-full h-auto object-contain mt-4 drop-shadow-2xl" />
             </div>
 
-            {/* Dashboard image — smaller, pushed down and left */}
-            <div className="absolute right-[2%] top-24 w-[46%]">
-              <Image
-                src={dashboardImg}
-                alt="QuickHire admin dashboard preview"
-                width={580}
-                height={390}
-                className="w-full h-auto object-contain drop-shadow-2xl"
-              />
+            {/* Desktop layout — side by side */}
+            <div className="hidden lg:block h-[420px]">
+              <div className="absolute left-0 top-0 bottom-0 z-10 flex flex-col justify-center pl-[9%] pr-6 w-[46%]">
+                <h2 className="text-[52px] font-[600] leading-[110%] text-white" style={{ fontFamily: "var(--font-heading)" }}>
+                  Start posting<br />jobs today
+                </h2>
+                <p className="mt-4 text-base text-white/70">Start posting jobs for only $10.</p>
+                <Link href="/signup" className="mt-8 inline-block w-fit px-8 py-4 bg-white text-[#4640DE] text-base font-semibold rounded hover:bg-[#f0f0ff] transition-colors">
+                  Sign Up For Free
+                </Link>
+              </div>
+              <div className="absolute right-[2%] top-24 w-[46%]">
+                <Image src={dashboardImg} alt="QuickHire admin dashboard preview" width={580} height={390} className="w-full h-auto object-contain drop-shadow-2xl" />
+              </div>
             </div>
 
             {/* Decorative circles */}
@@ -281,59 +286,94 @@ export default function HomePage() {
       {/* FOOTER */}
       <footer className="bg-[#202430] text-white">
         {/* Main footer content */}
-        <div className="max-w-[1440px] mx-auto px-6 lg:px-[124px] pt-16 pb-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[2fr_1fr_1fr_2fr] gap-12">
-
-          {/* Col 1 — Brand */}
-          <div className="flex flex-col gap-5">
-            <div className="flex items-center gap-2.5">
-              <div className="w-9 h-9 rounded-full bg-[#4640DE] flex items-center justify-center shrink-0">
-                <svg width="18" height="18" viewBox="0 0 34 34" fill="none">
-                  <circle cx="15.5" cy="15.5" r="6" stroke="white" strokeWidth="2.4"/>
-                  <path d="M20 20L24.5 24.5" stroke="white" strokeWidth="2.4" strokeLinecap="round"/>
-                </svg>
+        <div className="max-w-[1440px] mx-auto px-6 lg:px-[124px] pt-16 pb-12">
+          {/* Desktop grid */}
+          <div className="hidden lg:grid lg:grid-cols-[2fr_1fr_1fr_2fr] gap-12">
+            {/* Col 1 — Brand */}
+            <div className="flex flex-col gap-5">
+              <div className="flex items-center gap-2.5">
+                <div className="w-9 h-9 rounded-full bg-[#4640DE] flex items-center justify-center shrink-0">
+                  <svg width="18" height="18" viewBox="0 0 34 34" fill="none">
+                    <circle cx="15.5" cy="15.5" r="6" stroke="white" strokeWidth="2.4"/>
+                    <path d="M20 20L24.5 24.5" stroke="white" strokeWidth="2.4" strokeLinecap="round"/>
+                  </svg>
+                </div>
+                <span className="text-lg font-bold text-white" style={{ fontFamily: "var(--font-heading)" }}>QuickHire</span>
               </div>
-              <span className="text-lg font-bold text-white" style={{ fontFamily: "var(--font-heading)" }}>QuickHire</span>
+              <p className="text-sm text-[#9199A3] leading-relaxed max-w-[260px]">
+                Great platform for the job seeker that passionate about startups. Find your dream job easier.
+              </p>
             </div>
-            <p className="text-sm text-[#9199A3] leading-relaxed max-w-[260px]">
-              Great platform for the job seeker that passionate about startups. Find your dream job easier.
-            </p>
+            {/* Col 2 — About */}
+            <div className="flex flex-col gap-5">
+              <h4 className="text-base font-semibold text-white">About</h4>
+              <ul className="flex flex-col gap-4">
+                {["Companies", "Pricing", "Terms", "Advice", "Privacy Policy"].map((item) => (
+                  <li key={item}><Link href="#" className="text-sm text-[#9199A3] hover:text-white transition-colors">{item}</Link></li>
+                ))}
+              </ul>
+            </div>
+            {/* Col 3 — Resources */}
+            <div className="flex flex-col gap-5">
+              <h4 className="text-base font-semibold text-white">Resources</h4>
+              <ul className="flex flex-col gap-4">
+                {["Help Docs", "Guide", "Updates", "Contact Us"].map((item) => (
+                  <li key={item}><Link href="#" className="text-sm text-[#9199A3] hover:text-white transition-colors">{item}</Link></li>
+                ))}
+              </ul>
+            </div>
+            {/* Col 4 — Newsletter */}
+            <div className="flex flex-col gap-5">
+              <h4 className="text-base font-semibold text-white">Get job notifications</h4>
+              <p className="text-sm text-[#9199A3] leading-relaxed">The latest job news, articles, sent to your inbox weekly.</p>
+              <NewsletterForm />
+            </div>
           </div>
 
-          {/* Col 2 — About */}
-          <div className="flex flex-col gap-5">
-            <h4 className="text-base font-semibold text-white">About</h4>
-            <ul className="flex flex-col gap-4">
-              {["Companies", "Pricing", "Terms", "Advice", "Privacy Policy"].map((item) => (
-                <li key={item}>
-                  <Link href="#" className="text-sm text-[#9199A3] hover:text-white transition-colors">
-                    {item}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+          {/* Mobile layout */}
+          <div className="flex flex-col gap-10 lg:hidden">
+            {/* Brand */}
+            <div className="flex flex-col gap-4">
+              <div className="flex items-center gap-2.5">
+                <div className="w-9 h-9 rounded-full bg-[#4640DE] flex items-center justify-center shrink-0">
+                  <svg width="18" height="18" viewBox="0 0 34 34" fill="none">
+                    <circle cx="15.5" cy="15.5" r="6" stroke="white" strokeWidth="2.4"/>
+                    <path d="M20 20L24.5 24.5" stroke="white" strokeWidth="2.4" strokeLinecap="round"/>
+                  </svg>
+                </div>
+                <span className="text-lg font-bold text-white" style={{ fontFamily: "var(--font-heading)" }}>QuickHire</span>
+              </div>
+              <p className="text-sm text-[#9199A3] leading-relaxed max-w-[300px]">
+                Great platform for the job seeker that passionate about startups. Find your dream job easier.
+              </p>
+            </div>
 
-          {/* Col 3 — Resources */}
-          <div className="flex flex-col gap-5">
-            <h4 className="text-base font-semibold text-white">Resources</h4>
-            <ul className="flex flex-col gap-4">
-              {["Help Docs", "Guide", "Updates", "Contact Us"].map((item) => (
-                <li key={item}>
-                  <Link href="#" className="text-sm text-[#9199A3] hover:text-white transition-colors">
-                    {item}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+            {/* About + Resources — side by side */}
+            <div className="grid grid-cols-2 gap-8">
+              <div className="flex flex-col gap-4">
+                <h4 className="text-base font-semibold text-white">About</h4>
+                <ul className="flex flex-col gap-3">
+                  {["Companies", "Pricing", "Terms", "Advice", "Privacy Policy"].map((item) => (
+                    <li key={item}><Link href="#" className="text-sm text-[#9199A3] hover:text-white transition-colors">{item}</Link></li>
+                  ))}
+                </ul>
+              </div>
+              <div className="flex flex-col gap-4">
+                <h4 className="text-base font-semibold text-white">Resources</h4>
+                <ul className="flex flex-col gap-3">
+                  {["Help Docs", "Guide", "Updates", "Contact Us"].map((item) => (
+                    <li key={item}><Link href="#" className="text-sm text-[#9199A3] hover:text-white transition-colors">{item}</Link></li>
+                  ))}
+                </ul>
+              </div>
+            </div>
 
-          {/* Col 4 — Newsletter */}
-          <div className="flex flex-col gap-5">
-            <h4 className="text-base font-semibold text-white">Get job notifications</h4>
-            <p className="text-sm text-[#9199A3] leading-relaxed">
-              The latest job news, articles, sent to your inbox weekly.
-            </p>
-            <NewsletterForm />
+            {/* Newsletter */}
+            <div className="flex flex-col gap-4">
+              <h4 className="text-base font-semibold text-white">Get job notifications</h4>
+              <p className="text-sm text-[#9199A3] leading-relaxed">The latest job news, articles, sent to your inbox weekly.</p>
+              <NewsletterForm />
+            </div>
           </div>
         </div>
 
@@ -345,16 +385,10 @@ export default function HomePage() {
         {/* Bottom bar */}
         <div className="max-w-[1440px] mx-auto px-6 lg:px-[124px] py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-sm text-[#9199A3]">2026 @ QuickHire. All rights reserved.</p>
-
-          {/* Social icons */}
           <div className="flex items-center gap-3">
-            {/* Facebook */}
             <a href="#" aria-label="Facebook" className="w-9 h-9 rounded-full bg-[#2D3748] hover:bg-[#4640DE] flex items-center justify-center transition-colors">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="white">
-                <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
-              </svg>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
             </a>
-            {/* Instagram */}
             <a href="#" aria-label="Instagram" className="w-9 h-9 rounded-full bg-[#2D3748] hover:bg-[#4640DE] flex items-center justify-center transition-colors">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
@@ -362,25 +396,17 @@ export default function HomePage() {
                 <circle cx="17.5" cy="6.5" r="1" fill="white" stroke="none"/>
               </svg>
             </a>
-            {/* Dribbble */}
             <a href="#" aria-label="Dribbble" className="w-9 h-9 rounded-full bg-[#2D3748] hover:bg-[#4640DE] flex items-center justify-center transition-colors">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <circle cx="12" cy="12" r="10"/>
                 <path d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 5.85m19.5 1.9c-3.5-.93-6.63-.82-8.94 0-2.58.92-5.01 2.86-7.44 6.32"/>
               </svg>
             </a>
-            {/* LinkedIn */}
             <a href="#" aria-label="LinkedIn" className="w-9 h-9 rounded-full bg-[#2D3748] hover:bg-[#4640DE] flex items-center justify-center transition-colors">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="white">
-                <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/>
-                <circle cx="4" cy="4" r="2"/>
-              </svg>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
             </a>
-            {/* Twitter / X */}
             <a href="#" aria-label="Twitter" className="w-9 h-9 rounded-full bg-[#2D3748] hover:bg-[#4640DE] flex items-center justify-center transition-colors">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="white">
-                <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/>
-              </svg>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="white"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/></svg>
             </a>
           </div>
         </div>

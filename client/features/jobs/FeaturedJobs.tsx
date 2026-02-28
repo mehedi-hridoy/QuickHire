@@ -147,8 +147,34 @@ export default async function FeaturedJobs() {
           </Link>
         </div>
 
-        {/* 4-column grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        {/* Mobile: horizontal scroll */}
+        <div className="lg:hidden -mx-6 px-6">
+          <div className="flex overflow-x-auto snap-x snap-mandatory gap-4 pb-4 scrollbar-none">
+            {jobs.length > 0
+              ? jobs.map((job) => (
+                  <div key={job._id} className="snap-start shrink-0 w-[280px]">
+                    <JobCard job={job} />
+                  </div>
+                ))
+              : Array.from({ length: 4 }).map((_, i) => (
+                  <div key={i} className="snap-start shrink-0 w-[280px]">
+                    <SkeletonCard />
+                  </div>
+                ))
+            }
+          </div>
+          <div className="mt-4 flex justify-center">
+            <Link href="/jobs" className="flex items-center gap-2 text-sm font-semibold text-brand hover:underline underline-offset-4">
+              Show all jobs
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </Link>
+          </div>
+        </div>
+
+        {/* Desktop: 4-column grid */}
+        <div className="hidden lg:grid grid-cols-4 gap-5">
           {jobs.length > 0
             ? jobs.map((job) => <JobCard key={job._id} job={job} />)
             : Array.from({ length: 8 }).map((_, i) => <SkeletonCard key={i} />)
