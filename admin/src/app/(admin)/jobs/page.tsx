@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useMemo, useState } from 'react';
+import { useSearchParams, useRouter } from 'next/navigation';
 import TopBar from '@/components/admin/TopBar';
 import JobForm from '@/features/jobs/JobForm';
 import JobList from '@/features/jobs/JobList';
@@ -13,12 +14,22 @@ import type { Job } from '@/types/job';
 const initialFilters = { search: '', location: '', category: '', from: '', to: '', sort: 'desc' };
 
 export default function JobsPage() {
+  const searchParams = useSearchParams();
+  const router = useRouter();
   const [jobs, setJobs] = useState<Job[]>([]);
   const [showForm, setShowForm] = useState(false);
   const [editingJob, setEditingJob] = useState<Job | null>(null);
   const [loading, setLoading] = useState(true);
   const [filters, setFilters] = useState(initialFilters);
   const debounced = useDebounce(filters, 350);
+
+  // Auto-open the new-job modal when navigated here with ?new=1
+  useEffect(() => {
+    if (searchParams.get('new') === '1') {
+      setShowForm(true);
+      router.replace('/jobs');
+    }
+  }, [searchParams, router]);
 
   const params = useMemo(() => {
     const { search, location, category, from, to, sort } = debounced;
