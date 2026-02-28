@@ -93,7 +93,7 @@ function SkeletonCard() {
 /* ── Data fetcher ── */
 async function fetchLatestJobs(): Promise<Job[]> {
   try {
-    const res = await fetch(`${API_BASE}/api/jobs?sort=desc&limit=8&skip=8`, {
+    const res = await fetch(`${API_BASE}/api/jobs?sort=desc&limit=8`, {
       next: { revalidate: 60 },
     });
     if (!res.ok) return [];
