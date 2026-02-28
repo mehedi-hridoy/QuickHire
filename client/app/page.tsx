@@ -1,13 +1,17 @@
 import Image from "next/image";
+import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import HeroSearch from "@/features/jobs/HeroSearch";
 import heroImg from "@/assets/hero.png";
-import vodaphoneImg from "@/assets/vodaphone.png";
+import vodaphoneIconImg from "@/assets/vodaphone.png";
+import vodaphoneImg from "@/assets/vodaphone2.png";
 import intelImg from "@/assets/intel.png";
 import teslaImg from "@/assets/tesla.png";
 import amdImg from "@/assets/amd.png";
 import talkitImg from "@/assets/talkit.png";
 import dashboardImg from "@/assets/dashboard.png";
+import FeaturedJobs from "@/features/jobs/FeaturedJobs";
+import LatestJobs from "@/features/jobs/LatestJobs";
 
 function DesignIcon() {
   return (
@@ -100,7 +104,7 @@ const categories = [
 ];
 
 const companies = [
-  { name: "Vodafone", src: vodaphoneImg },
+  { name: "Vodafone", src: vodaphoneImg, icon: vodaphoneIconImg },
   { name: "Intel",    src: intelImg },
   { name: "Tesla",    src: teslaImg },
   { name: "AMD",      src: amdImg },
@@ -172,15 +176,17 @@ export default function HomePage() {
 
       {/* COMPANIES */}
       <section className="border-y border-border bg-white">
-        <div className="max-w-[1440px] mx-auto px-6 lg:px-[124px] py-10 flex flex-col md:flex-row items-center gap-8">
-          <p className="text-sm font-semibold text-muted whitespace-nowrap shrink-0 uppercase tracking-wider">
+        <div className="max-w-[1440px] mx-auto px-6 lg:px-[124px] py-10 flex flex-col gap-6">
+          <p className="text-sm text-[#A8ADB7] font-normal">
             Companies we helped grow
           </p>
-          <div className="w-px h-10 bg-border hidden md:block shrink-0" />
-          <div className="flex flex-wrap justify-center md:justify-start items-center gap-10 md:gap-14">
+          <div className="flex items-center justify-between gap-6">
             {companies.map((c) => (
-              <div key={c.name} className="opacity-50 hover:opacity-100 grayscale hover:grayscale-0 transition-all duration-300">
-                <Image src={c.src} alt={c.name} height={32} width={120} className="h-8 w-auto object-contain"/>
+              <div key={c.name} className="flex items-center gap-2" style={{ filter: "grayscale(1) brightness(0.72)" }}>
+                {"icon" in c && c.icon && (
+                  <Image src={c.icon} alt="" height={28} width={28} className="h-7 w-auto object-contain" />
+                )}
+                <Image src={c.src} alt={c.name} height={28} width={120} className="h-7 w-auto object-contain" />
               </div>
             ))}
           </div>
@@ -199,17 +205,17 @@ export default function HomePage() {
                 Find the job that perfectly matches your passion and skill set.
               </p>
             </div>
-            <a href="/jobs" className="shrink-0 flex items-center gap-1.5 text-sm font-semibold text-brand hover:underline underline-offset-4">
+            <Link href="/jobs" className="shrink-0 flex items-center gap-1.5 text-sm font-semibold text-brand hover:underline underline-offset-4">
               Show all jobs
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                 <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
-            </a>
+            </Link>
           </div>
 
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-6">
             {categories.map((cat) => (
-              <a
+              <Link
                 key={cat.id}
                 href={`/jobs?category=${encodeURIComponent(cat.name)}`}
                 className="group bg-white border border-border rounded-[4px] p-6 flex flex-col gap-5 hover:bg-[#4640DE] hover:border-[#4640DE] transition-all duration-200"
@@ -230,7 +236,7 @@ export default function HomePage() {
                     <path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
                 </div>
-              </a>
+              </Link>
             ))}
           </div>
         </div>
@@ -258,12 +264,12 @@ export default function HomePage() {
               <p className="mt-4 text-base text-white/70">
                 Start posting jobs for only $10.
               </p>
-              <a
+              <Link
                 href="/signup"
                 className="mt-8 inline-block w-fit px-8 py-4 bg-white text-[#4640DE] text-base font-semibold rounded hover:bg-[#f0f0ff] transition-colors"
               >
                 Sign Up For Free
-              </a>
+              </Link>
             </div>
 
             {/* Dashboard image — smaller, pushed down and left */}
@@ -284,6 +290,10 @@ export default function HomePage() {
         </div>
       </section>
 
+      <FeaturedJobs />
+
+      <LatestJobs />
+
       {/* FOOTER */}
       <footer className="border-t border-border bg-white">
         <div className="max-w-[1440px] mx-auto px-6 lg:px-[124px] py-10 flex flex-col md:flex-row items-center justify-between gap-4">
@@ -297,9 +307,9 @@ export default function HomePage() {
           </div>
           <p className="text-sm text-subtle text-center">\u00a9 2026 QuickHire. All rights reserved.</p>
           <div className="flex items-center gap-6">
-            <a href="/privacy" className="text-sm text-subtle hover:text-dark transition-colors">Privacy</a>
-            <a href="/terms" className="text-sm text-subtle hover:text-dark transition-colors">Terms</a>
-            <a href="/contact" className="text-sm text-subtle hover:text-dark transition-colors">Contact</a>
+            <Link href="/privacy" className="text-sm text-subtle hover:text-dark transition-colors">Privacy</Link>
+            <Link href="/terms" className="text-sm text-subtle hover:text-dark transition-colors">Terms</Link>
+            <Link href="/contact" className="text-sm text-subtle hover:text-dark transition-colors">Contact</Link>
           </div>
         </div>
       </footer>

@@ -1,4 +1,6 @@
-import Image from 'next/image';
+"use client";
+
+import JobLogoImage from '@/components/ui/JobLogoImage';
 import { SERVER_URL } from '@/lib/constants';
 import type { Job } from '@/types/job';
 
@@ -32,19 +34,13 @@ export default function JobList({ jobs, onDelete }: Props) {
           className="bg-white rounded-xl border border-gray-100 p-5 shadow-sm hover:shadow-md transition-shadow flex flex-col"
         >
           <div className="flex items-start justify-between mb-3">
-            <div className="w-11 h-11 rounded-lg bg-gray-50 border border-gray-100 flex items-center justify-center overflow-hidden shrink-0">
-              {job.logo ? (
-                <Image
-                  src={`${SERVER_URL}${job.logo}`}
-                  alt={job.company}
-                  width={44}
-                  height={44}
-                  className="object-contain"
-                />
-              ) : (
-                <span className="text-base font-bold text-gray-300">{job.company?.[0] ?? 'C'}</span>
-              )}
-            </div>
+            <JobLogoImage
+              src={job.logo ? `${SERVER_URL}${job.logo}` : null}
+              alt={job.company}
+              company={job.company}
+              size={44}
+              className="rounded-lg"
+            />
             <span className="text-[11px] font-medium text-blue-600 bg-blue-50 border border-blue-100 px-2 py-0.5 rounded">
               {job.type}
             </span>
