@@ -1,26 +1,33 @@
+@import url("https://api.fontshare.com/v2/css?f[]=clash-display@600,500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Epilogue:wght@400;500;600;700&display=swap");
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  /* Brand colours */
+  --color-brand: #4640de;
+  --color-accent: #26a4ff;
+  --color-muted: #515b6f;
+  --color-subtle: #7c8493;
+  --color-border: #d6ddeb;
+  --color-surface: #f8f8fd;
+  --color-dark: #25324b;
+  --color-tag-bg: #e9ebfd;
+
+  /* Font families */
+  --font-heading: "Clash Display", sans-serif;
+  --font-body: "Epilogue", sans-serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-surface);
+  font-family: var(--font-body);
+  color: var(--color-dark);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
