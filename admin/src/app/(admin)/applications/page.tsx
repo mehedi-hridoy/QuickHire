@@ -14,13 +14,18 @@ export default function ApplicationsPage() {
     applicationService.getAll().then(setItems).finally(() => setLoading(false));
   }, []);
 
+  const handleDelete = async (id: string) => {
+    await applicationService.deleteById(id);
+    setItems(prev => prev.filter(a => a._id !== id));
+  };
+
   return (
     <div>
-      <TopBar title="All Applications" />
+      <TopBar title="All Applicants" />
       {loading ? (
         <div className="text-center py-20 text-gray-400 text-sm">Loading applications...</div>
       ) : (
-        <ApplicationTable items={items} />
+        <ApplicationTable items={items} onDelete={handleDelete} />
       )}
     </div>
   );

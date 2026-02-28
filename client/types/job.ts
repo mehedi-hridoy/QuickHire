@@ -5,7 +5,7 @@ export interface Job {
   location: string;
   category: string;
   description: string;
-  type: "Full Time" | "Part Time";
+  type: "Full Time" | "Part Time" | "Remote" | "Internship" | "Contract";
   tags: string[];
   logo: string | null;
   createdAt: string;

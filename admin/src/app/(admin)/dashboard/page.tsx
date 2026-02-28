@@ -7,6 +7,7 @@ import BarChart from '@/features/dashboard/BarChart';
 import JobOpenCard from '@/features/dashboard/JobOpenCard';
 import ApplicantsSummary from '@/features/dashboard/ApplicantsSummary';
 import JobMetricsCard from '@/features/dashboard/JobMetricsCard';
+import RecentList from '@/features/dashboard/RecentList';
 import { statsService } from '@/services/statsService';
 import type { Stats } from '@/types/stats';
 
@@ -119,6 +120,26 @@ export default function DashboardPage() {
           <ApplicantsSummary total={stats.totalApplications} breakdown={breakdown} />
           <JobMetricsCard metrics={metrics} />
         </div>
+      </div>
+
+      {/* Recent activity */}
+      <div className="grid grid-cols-2 gap-4">
+        <RecentList
+          title="Recent Jobs Posted"
+          items={stats.recentJobs.map(j => ({
+            title: j.title,
+            subtitle: `${j.company} · ${j.location}`,
+            date: new Date(j.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
+          }))}
+        />
+        <RecentList
+          title="Recent Applicants"
+          items={stats.recentApplications.map(a => ({
+            title: a.name,
+            subtitle: a.jobTitle ?? 'Unknown position',
+            date: new Date(a.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
+          }))}
+        />
       </div>
     </div>
   );
