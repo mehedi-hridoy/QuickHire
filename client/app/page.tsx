@@ -121,10 +121,6 @@ export default function HomePage() {
       <section className="relative bg-surface overflow-hidden">
         <div className="max-w-[1440px] mx-auto px-6 lg:px-[124px] pt-16 lg:pt-24 pb-0 flex flex-col-reverse lg:flex-row items-center gap-10 lg:gap-0">
           <div className="flex-1 pb-20 lg:pb-28 max-w-[600px]">
-            <div className="inline-flex items-center gap-2 mb-6">
-              <span className="w-8 h-px bg-brand" />
-              <span className="text-sm font-semibold text-brand tracking-widest uppercase">No. 1 Job Hunt Website</span>
-            </div>
             <h1 className="text-[48px] sm:text-[60px] lg:text-[72px] font-[600] leading-[110%] text-dark" style={{ fontFamily: "var(--font-heading)" }}>
               Discover more than
               <br />
@@ -145,19 +141,6 @@ export default function HomePage() {
             <div className="absolute bottom-0 right-0 w-[420px] lg:w-[480px] h-[520px] lg:h-[640px] bg-[#E9EBFD] rounded-t-[160px] rounded-b-none" />
             <div className="relative z-10 mt-auto">
               <Image src={heroImg} alt="Career professional" width={501} height={707} priority className="object-contain max-h-[580px] lg:max-h-none"/>
-            </div>
-            <div className="absolute top-10 left-0 lg:-left-6 z-20 bg-white rounded-xl shadow-[0_8px_32px_rgba(0,0,0,0.10)] px-5 py-4 flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-[#F0F4FF] flex items-center justify-center">
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                  <rect x="2" y="5" width="16" height="12" rx="2" stroke="#4640DE" strokeWidth="1.6"/>
-                  <path d="M7 5V4a3 3 0 016 0v1" stroke="#4640DE" strokeWidth="1.6"/>
-                  <path d="M2 10h16" stroke="#4640DE" strokeWidth="1.6"/>
-                </svg>
-              </div>
-              <div>
-                <p className="text-xs text-subtle font-medium">Live jobs</p>
-                <p className="text-lg font-bold text-dark" style={{ fontFamily: "var(--font-heading)" }}>5,000+</p>
-              </div>
             </div>
             <div className="absolute bottom-24 right-4 lg:-right-4 z-20 bg-white rounded-xl shadow-[0_8px_32px_rgba(0,0,0,0.10)] px-5 py-4 flex items-center gap-3">
               <div className="w-10 h-10 rounded-full bg-[#ECFDF5] flex items-center justify-center">
