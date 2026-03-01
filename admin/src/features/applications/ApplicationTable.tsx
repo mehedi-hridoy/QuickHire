@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import ConfirmDialog from '@/components/admin/ConfirmDialog';
 import type { Application } from '@/types/application';
 
 interface Props {
@@ -35,11 +36,11 @@ function CoverNoteModal({ note, onClose }: { note: string; onClose: () => void }
 export default function ApplicationTable({ items, onDelete }: Props) {
   const [selectedNote, setSelectedNote] = useState<string | null>(null);
   const [deletingId, setDeletingId] = useState<string | null>(null);
+  const [confirmApp, setConfirmApp] = useState<Application | null>(null);
 
   const handleDelete = async (id: string) => {
-    if (!confirm('Remove this application?')) return;
-    setDeletingId(id);
-    try { await onDelete(id); } finally { setDeletingId(null); }
+    const target = items.find((a) => a._id === id) ?? null;
+    setConfirmApp(target);
   };
 
   if (!items.length) {
@@ -128,6 +129,23 @@ export default function ApplicationTable({ items, onDelete }: Props) {
       </div>
 
       {selectedNote && <CoverNoteModal note={selectedNote} onClose={() => setSelectedNote(null)} />}
+
+      <ConfirmDialog
+        open={!!confirmApp}
+        title="Remove application?"
+        description={
+          confirmApp
+            ? `This will permanently remove ${confirmApp.name}'s application${confirmApp.jobTitle ? ` for ${confirmApp.jobTitle}` : ''}.`
+            : undefined
+        }
+        confirmText="Remove"
+        onCancel={() => setConfirmApp(null)}
+        onConfirm={async () => {
+          if (!confirmApp) return;
+          setDeletingId(confirmApp._id);
+          try { await onDelete(confirmApp._id); } finally { setDeletingId(null); setConfirmApp(null); }
+        }}
+      />
     </>
   );
 }

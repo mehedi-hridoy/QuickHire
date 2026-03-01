@@ -139,21 +139,8 @@ export default function HomePage() {
 
           {/* Hero image — hidden on mobile */}
           <div className="hidden lg:flex relative flex-shrink-0 justify-end ml-16 w-auto">
-            <div className="absolute bottom-0 right-0 w-[480px] h-[640px] bg-[#E9EBFD] rounded-t-[160px] rounded-b-none" />
             <div className="relative z-10 mt-auto">
               <Image src={heroImg} alt="Career professional" width={501} height={707} priority className="object-contain"/>
-            </div>
-            <div className="absolute bottom-24 -right-4 z-20 bg-white rounded-xl shadow-[0_8px_32px_rgba(0,0,0,0.10)] px-5 py-4 flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-[#ECFDF5] flex items-center justify-center">
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                  <path d="M2 17V8l8-5 8 5v9" stroke="#34D399" strokeWidth="1.6" strokeLinejoin="round"/>
-                  <rect x="7" y="12" width="6" height="5" rx="1" stroke="#34D399" strokeWidth="1.6"/>
-                </svg>
-              </div>
-              <div>
-                <p className="text-xs text-subtle font-medium">Companies</p>
-                <p className="text-lg font-bold text-dark" style={{ fontFamily: "var(--font-heading)" }}>2,000+</p>
-              </div>
             </div>
           </div>
         </div>
@@ -184,7 +171,7 @@ export default function HomePage() {
           <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4 mb-8 lg:mb-12">
             <div>
               <h2 className="text-[28px] lg:text-[40px] font-[700] text-dark leading-tight" style={{ fontFamily: "var(--font-heading)" }}>
-                Explore by <span className="text-brand">category</span>
+                Explore by <span className="text-[#26A4FF]">category</span>
               </h2>
             </div>
           </div>
@@ -241,8 +228,8 @@ export default function HomePage() {
       <section className="px-4 py-10 lg:py-20 lg:px-[124px]">
         <div className="max-w-[1440px] mx-auto">
           <div
-            className="relative bg-[#4640DE] overflow-hidden"
-            style={{ clipPath: "polygon(4% 0%, 100% 0%, 100% 82%, 96% 100%, 0% 100%, 0% 0%)" }}
+            className="relative bg-[#4640DE] overflow-hidden rounded-2xl"
+            style={{ clipPath: "polygon(0% 0%, 100% 0%, 100% 82%, 96% 100%, 0% 100%)" }}
           >
             {/* Mobile layout — centered text */}
             <div className="lg:hidden flex flex-col items-center text-center px-6 py-14 gap-4">
@@ -292,9 +279,9 @@ export default function HomePage() {
             {/* Col 1 — Brand */}
             <div className="flex flex-col gap-5">
               <div className="flex items-center gap-2.5">
-                <svg width="36" height="36" viewBox="0 0 36 36" fill="none" aria-hidden="true" className="shrink-0">
-                  <rect width="36" height="36" rx="9" fill="#4640DE" />
-                  <path d="M21 5L12 20H18L15 30L24 16H18Z" fill="white" />
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true" className="shrink-0">
+                  <rect width="32" height="32" rx="8" fill="#4F46E5" />
+                  <path d="M18.5 5L10.5 18H15.5L13.5 27L21.5 14H16.5Z" fill="white" />
                 </svg>
                 <span className="text-lg font-bold text-white" style={{ fontFamily: "var(--font-heading)" }}>QuickHire</span>
               </div>
@@ -333,9 +320,9 @@ export default function HomePage() {
             {/* Brand */}
             <div className="flex flex-col gap-4">
               <div className="flex items-center gap-2.5">
-                <svg width="36" height="36" viewBox="0 0 36 36" fill="none" aria-hidden="true" className="shrink-0">
-                  <rect width="36" height="36" rx="9" fill="#4640DE" />
-                  <path d="M21 5L12 20H18L15 30L24 16H18Z" fill="white" />
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true" className="shrink-0">
+                  <rect width="32" height="32" rx="8" fill="#4F46E5" />
+                  <path d="M18.5 5L10.5 18H15.5L13.5 27L21.5 14H16.5Z" fill="white" />
                 </svg>
                 <span className="text-lg font-bold text-white" style={{ fontFamily: "var(--font-heading)" }}>QuickHire</span>
               </div>

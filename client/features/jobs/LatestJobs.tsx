@@ -136,7 +136,7 @@ export default async function LatestJobs() {
         {/* Header */}
         <div className="flex items-center justify-between mb-10">
           <h2 className="text-[32px] lg:text-[40px] font-bold text-[#25324B] leading-tight">
-            Latest <span className="text-brand">jobs open</span>
+            Latest <span className="text-[#26A4FF]">jobs open</span>
           </h2>
           <Link
             href="/jobs"

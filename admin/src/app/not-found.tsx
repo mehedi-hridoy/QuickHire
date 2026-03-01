@@ -4,9 +4,9 @@ export default function NotFound() {
   return (
     <div className="flex flex-col items-center justify-center min-h-[70vh] text-center gap-5">
       <div className="w-16 h-16 rounded-2xl bg-gray-100 flex items-center justify-center">
-        <svg width="32" height="32" viewBox="0 0 36 36" fill="none" aria-hidden="true">
-          <rect width="36" height="36" rx="9" fill="#4640DE" />
-          <path d="M21 5L12 20H18L15 30L24 16H18Z" fill="white" />
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+          <rect width="32" height="32" rx="8" fill="#4F46E5" />
+          <path d="M18.5 5L10.5 18H15.5L13.5 27L21.5 14H16.5Z" fill="white" />
         </svg>
       </div>
       <div>

@@ -37,9 +37,9 @@ export default function Sidebar() {
   return (
     <aside className="w-60 bg-white border-r border-gray-100 h-screen sticky top-0 flex flex-col">
       <div className="px-5 py-6 flex items-center gap-2.5">
-        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" aria-hidden="true" className="shrink-0">
-          <rect width="36" height="36" rx="9" fill="#4640DE" />
-          <path d="M21 5L12 20H18L15 30L24 16H18Z" fill="white" />
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true" className="shrink-0">
+          <rect width="32" height="32" rx="8" fill="#4F46E5" />
+          <path d="M18.5 5L10.5 18H15.5L13.5 27L21.5 14H16.5Z" fill="white" />
         </svg>
         <span className="text-lg font-bold text-gray-900 tracking-tight">
           Quick<span className="text-indigo-600">Hire</span>

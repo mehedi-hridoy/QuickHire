@@ -134,7 +134,7 @@ export default async function FeaturedJobs() {
         {/* Header */}
         <div className="flex items-center justify-between gap-4 mb-12">
           <h2 className="text-[32px] lg:text-[40px] font-bold text-[#25324B] leading-tight">
-            Featured <span className="text-brand">jobs</span>
+            Featured <span className="text-[#26A4FF]">jobs</span>
           </h2>
           <Link
             href="/jobs"

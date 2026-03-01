@@ -9,6 +9,7 @@ import JobsHeader from '@/features/jobs/JobsHeader';
 import JobsFilters from '@/features/jobs/JobsFilters';
 import useDebounce from '@/hooks/useDebounce';
 import { jobService } from '@/services/jobService';
+import ConfirmDialog from '@/components/admin/ConfirmDialog';
 import type { Job } from '@/types/job';
 
 const initialFilters = { search: '', location: '', category: '', from: '', to: '', sort: 'desc' };
@@ -19,6 +20,7 @@ export default function JobsPage() {
   const [jobs, setJobs] = useState<Job[]>([]);
   const [showForm, setShowForm] = useState(false);
   const [editingJob, setEditingJob] = useState<Job | null>(null);
+  const [confirmJob, setConfirmJob] = useState<Job | null>(null);
   const [loading, setLoading] = useState(true);
   const [filters, setFilters] = useState(initialFilters);
   const debounced = useDebounce(filters, 350);
@@ -51,9 +53,8 @@ export default function JobsPage() {
   };
 
   const handleDelete = async (id: string) => {
-    if (!confirm('Delete this job?')) return;
-    await jobService.remove(id);
-    setJobs((prev) => prev.filter((j) => j._id !== id));
+    const target = jobs.find((j) => j._id === id) ?? null;
+    setConfirmJob(target);
   };
 
   const handleEdit = (job: Job) => {
@@ -97,6 +98,24 @@ export default function JobsPage() {
           </div>
         </div>
       )}
+
+      <ConfirmDialog
+        open={!!confirmJob}
+        title="Delete job?"
+        description={
+          confirmJob
+            ? `This will permanently delete "${confirmJob.title}" at ${confirmJob.company}.`
+            : undefined
+        }
+        confirmText="Delete job"
+        onCancel={() => setConfirmJob(null)}
+        onConfirm={async () => {
+          if (!confirmJob) return;
+          await jobService.remove(confirmJob._id);
+          setJobs((prev) => prev.filter((j) => j._id !== confirmJob._id));
+          setConfirmJob(null);
+        }}
+      />
     </div>
   );
 }
