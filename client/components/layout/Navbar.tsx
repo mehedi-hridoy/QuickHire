@@ -5,24 +5,10 @@ import { useState } from "react";
 
 function QuickHireLogo() {
   return (
-    <svg
-      width="34"
-      height="34"
-      viewBox="0 0 34 34"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      aria-hidden="true"
-    >
-      <circle cx="17" cy="17" r="17" fill="#4640DE" />
-      {/* Magnifying glass: circle ring */}
-      <circle cx="15.5" cy="15.5" r="6" stroke="white" strokeWidth="2.4" />
-      {/* Magnifying glass: handle */}
-      <path
-        d="M20 20L24.5 24.5"
-        stroke="white"
-        strokeWidth="2.4"
-        strokeLinecap="round"
-      />
+    <svg width="36" height="36" viewBox="0 0 36 36" fill="none" aria-hidden="true">
+      <rect width="36" height="36" rx="9" fill="#4640DE" />
+      {/* Lightning bolt — represents "Quick" */}
+      <path d="M21 5L12 20H18L15 30L24 16H18Z" fill="white" />
     </svg>
   );
 }

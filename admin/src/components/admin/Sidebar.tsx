@@ -11,6 +11,7 @@ import {
   CalendarDays,
   Settings,
   HelpCircle,
+  LogOut,
 } from 'lucide-react';
 
 const mainNav = [
@@ -36,9 +37,10 @@ export default function Sidebar() {
   return (
     <aside className="w-60 bg-white border-r border-gray-100 h-screen sticky top-0 flex flex-col">
       <div className="px-5 py-6 flex items-center gap-2.5">
-        <div className="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center shrink-0">
-          <Briefcase size={16} className="text-white" />
-        </div>
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" aria-hidden="true" className="shrink-0">
+          <rect width="36" height="36" rx="9" fill="#4640DE" />
+          <path d="M21 5L12 20H18L15 30L24 16H18Z" fill="white" />
+        </svg>
         <span className="text-lg font-bold text-gray-900 tracking-tight">
           Quick<span className="text-indigo-600">Hire</span>
         </span>
@@ -101,6 +103,20 @@ export default function Sidebar() {
           </div>
         </div>
       </nav>
+
+      {/* Logout */}
+      <div className="px-3 pb-4 border-t border-gray-100 pt-3">
+        <button
+          onClick={() => {
+            localStorage.removeItem('qh_admin_auth');
+            window.location.href = '/login';
+          }}
+          className="flex w-full items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-500 hover:bg-red-50 hover:text-red-600 transition-colors"
+        >
+          <LogOut size={17} />
+          Logout
+        </button>
+      </div>
     </aside>
   );
 }

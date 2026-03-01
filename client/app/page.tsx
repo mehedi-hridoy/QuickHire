@@ -292,12 +292,10 @@ export default function HomePage() {
             {/* Col 1 — Brand */}
             <div className="flex flex-col gap-5">
               <div className="flex items-center gap-2.5">
-                <div className="w-9 h-9 rounded-full bg-[#4640DE] flex items-center justify-center shrink-0">
-                  <svg width="18" height="18" viewBox="0 0 34 34" fill="none">
-                    <circle cx="15.5" cy="15.5" r="6" stroke="white" strokeWidth="2.4"/>
-                    <path d="M20 20L24.5 24.5" stroke="white" strokeWidth="2.4" strokeLinecap="round"/>
-                  </svg>
-                </div>
+                <svg width="36" height="36" viewBox="0 0 36 36" fill="none" aria-hidden="true" className="shrink-0">
+                  <rect width="36" height="36" rx="9" fill="#4640DE" />
+                  <path d="M21 5L12 20H18L15 30L24 16H18Z" fill="white" />
+                </svg>
                 <span className="text-lg font-bold text-white" style={{ fontFamily: "var(--font-heading)" }}>QuickHire</span>
               </div>
               <p className="text-sm text-[#9199A3] leading-relaxed max-w-[260px]">
@@ -335,12 +333,10 @@ export default function HomePage() {
             {/* Brand */}
             <div className="flex flex-col gap-4">
               <div className="flex items-center gap-2.5">
-                <div className="w-9 h-9 rounded-full bg-[#4640DE] flex items-center justify-center shrink-0">
-                  <svg width="18" height="18" viewBox="0 0 34 34" fill="none">
-                    <circle cx="15.5" cy="15.5" r="6" stroke="white" strokeWidth="2.4"/>
-                    <path d="M20 20L24.5 24.5" stroke="white" strokeWidth="2.4" strokeLinecap="round"/>
-                  </svg>
-                </div>
+                <svg width="36" height="36" viewBox="0 0 36 36" fill="none" aria-hidden="true" className="shrink-0">
+                  <rect width="36" height="36" rx="9" fill="#4640DE" />
+                  <path d="M21 5L12 20H18L15 30L24 16H18Z" fill="white" />
+                </svg>
                 <span className="text-lg font-bold text-white" style={{ fontFamily: "var(--font-heading)" }}>QuickHire</span>
               </div>
               <p className="text-sm text-[#9199A3] leading-relaxed max-w-[300px]">
